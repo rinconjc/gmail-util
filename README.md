@@ -20,11 +20,8 @@ A CLI tool to export and purge Gmail messages
     
 ## Install
 
-Download the command from Github releases, or use brew:
+Download the command from Github releases, or use brew(WIP):
 
-```shell
-brew install gmail-util
-```
 
 ## Running the command
 
