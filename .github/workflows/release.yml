@@ -15,6 +15,7 @@ jobs:
           echo ${{ github.sha }} > Release.txt
           for osv in linux darwin windows; do
           for arch in amd64 arm64; do
+          echo "building for $osv-$arch ..."
           GOOS=$osv GOARCH=$arch go build -o dist/$osv-$arch/gmail-util -v ./...
           done
           done
@@ -25,4 +26,4 @@ jobs:
           files: |
             Release.txt
             LICENSE
-            dist
+            dist/**
