@@ -13,10 +13,12 @@ jobs:
       - name: Build
         run: |
           echo ${{ github.sha }} > Release.txt
-          for osv in linux darwin windows; do
+          GOOS=windows GOARCH=amd64 go build -o dist/$osv-$arch/gmail-util -v ./...
+          for osv in linux darwin; do
           for arch in amd64 arm64; do
           echo "building for $osv-$arch ..."
           GOOS=$osv GOARCH=$arch go build -o dist/$osv-$arch/gmail-util -v ./...
+          zip -j dist/gmail-util-$osv-$arch.zip dist/$osv-$arch/gmail-util
           done
           done
       - name: Release
@@ -26,4 +28,4 @@ jobs:
           files: |
             Release.txt
             LICENSE
-            dist/**
+            dist/*.zip
