@@ -1,0 +1,28 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - "v*.*.*"
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Build
+        run: |
+          echo ${{ github.sha }} > Release.txt
+          for osv in linux darwin windows; do
+          for arch in amd64 arm64; do
+          GOOS=$osv GOARCH=$arch go build -o dist/$osv-$arch/gmail-util -v ./...
+          done
+          done
+      - name: Release
+        uses: softprops/action-gh-release@v1
+        if: startsWith(github.ref, 'refs/tags/')
+        with:
+          files: |
+            Release.txt
+            LICENSE
+            dist
