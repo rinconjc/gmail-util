@@ -20,14 +20,54 @@ A CLI tool to export and purge Gmail messages
     
 ## Install
 
-Download the command from Github releases, or use brew(WIP):
+Download the command from Github releases for your platform and OS
 
 
-## Running the command
+## Usage Examples
+
+* Print help
 
 ```shell
-gmail-util -h
+./gmail-util -h
+
+# Usage:
+#         ./gmail-util <command> [arguments]
+# 
+# The commands are:
+# 
+#         export  Exports messages to a file
+#         purge   Deletes messages from Gmail
 
 ```
+
+* Export all messages received in 2010
+
+```shell
+./gmail-util export -q 'to:me after:2009 before:2011' -o emails2010 -a -c 6
+
+# Exporting messages matching: to:me after:2009 before:2011 to file: emails2010
+# Messages exported: 1489
+# Done
+
+```
+
+* Purge all messages from ebay@ebay.com.au
+
+```shell
+./gmail-util purge -q 'from:ebay@ebay.com.au' -a
+
+# Deleting messages matching: from:ebay@ebay.com.au
+# Messages deleted:115
+# Done
+```
+
+* Purge all unread messages received before 2020 (For me old unread emails are mostly spam)
+
+```shell
+./gmail-util purge -q 'is:unread before:2020' -a
+
+```
+
+
 
 

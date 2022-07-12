@@ -296,9 +296,19 @@ func main() {
 	var outFile = exportCmd.String("o", "messages.mbox", "Output file to export messages to")
 	var concurMsgGet = exportCmd.Int("c", 2, "Number of concurrent message retrievers")
 	exportCmd.StringVar(&query, "q", "", "Filter query messages")
-	exportCmd.BoolVar(&allPages, "a", false, "Export all messages, else only the first page")
+	exportCmd.BoolVar(&allPages, "a", false, "Export all or only the first 100 matching messages")
 	purgeCmd.StringVar(&query, "q", "", "Filter query messages")
-	purgeCmd.BoolVar(&allPages, "a", false, "Purge all pages, else only deletes first page")
+	purgeCmd.BoolVar(&allPages, "a", false, "Purge all(or only the first 100) matching messages")
+	usageHelp := func() {
+		log.Printf("Usage:\n\t%s <command> [arguments]\n\nThe commands are:\n\n", os.Args[0])
+		for _, c := range []struct {
+			fs   *flag.FlagSet
+			desc string
+		}{{fs: exportCmd, desc: "Exports messages to a file"},
+			{fs: purgeCmd, desc: "Deletes messages from Gmail"}} {
+			fmt.Printf("\t%s\t%s\n", c.fs.Name(), c.desc)
+		}
+	}
 	switch os.Args[1] {
 	case exportCmd.Name():
 		exportCmd.Parse(os.Args[2:])
@@ -308,7 +318,10 @@ func main() {
 		purgeCmd.Parse(os.Args[2:])
 		ConfigClient()
 		DoPurge(query, allPages)
+	case "-h":
+		usageHelp()
 	default:
-		log.Fatalf("invalid sub-command %s", os.Args[1])
+		log.Printf("Invalid sub-command %s\n", os.Args[1])
+		usageHelp()
 	}
 }
