@@ -1,7 +1,12 @@
 # gmail-util
-A CLI tool to export and purge Gmail messages
+
+A CLI tool to export and purge Gmail messages. It downloads emails to a [MBox file format](https://en.wikipedia.org/wiki/Mbox) that can later be opened using desktop mail client tools like Thunderbird.
 
 # Usage
+
+## Install
+
+Download the executable `gmail-util` from the latest [release](https://github.com/rinconjc/gmail-util/releases) for your platform and OS, and follow the below instructions to configure and run.
 
 ## Configure OAuth2 Client
 
@@ -18,10 +23,6 @@ A CLI tool to export and purge Gmail messages
       + Copy the file downloaded in the previous step to your **$HOME/.config/gmail-secret.json**
     
     
-## Install
-
-Download the command from Github releases for your platform and OS
-
 
 ## Usage Examples
 
