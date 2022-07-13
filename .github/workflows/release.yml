@@ -13,7 +13,8 @@ jobs:
       - name: Build
         run: |
           echo ${{ github.sha }} > Release.txt
-          GOOS=windows GOARCH=amd64 go build -o dist/$osv-$arch/gmail-util -v ./...
+          GOOS=windows GOARCH=amd64 go build -o dist/win-amd64/gmail-util -v ./...
+          zip -j dist/gmail-util-win-amd64.zip dist/win-amd64/gmail-util
           for osv in linux darwin; do
           for arch in amd64 arm64; do
           echo "building for $osv-$arch ..."
