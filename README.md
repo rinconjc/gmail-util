@@ -26,6 +26,8 @@ Download the executable `gmail-util` from the latest [release](https://github.co
 
 ## Usage Examples
 
+The export and usage commands support query filter option `q` that follows the Gmail query syntax: https://support.google.com/mail/answer/7190?hl=en 
+
 * Print help
 
 ```shell
