@@ -1,6 +1,6 @@
 # gmail-util
 
-A CLI tool to export and purge Gmail messages. It downloads emails to a [MBox file format](https://en.wikipedia.org/wiki/Mbox) that can later be opened using desktop mail client tools like Thunderbird.
+A CLI tool to export and purge Gmail messages. It downloads emails to a file in [MBox file format](https://en.wikipedia.org/wiki/Mbox) that later can be opened using desktop mail client tools like Thunderbird.
 
 # Usage
 
